@@ -85,8 +85,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'server.wsgi.application'
+AUTH_USER_MODEL = 'accounts.User'
 
-
+MEDIA_URL='/media/'
+MEDIA_ROOT=BASE_DIR/'media'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
