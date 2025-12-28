@@ -16,7 +16,7 @@ def blog_list_create(request):
             )
         else:
             blogs=Blog.objects.filter(visibility='public')
-        serializer=BlogSerializer(blogs,many=True)
+        serializer=BlogSerializer(blogs,many=True, context={'request': request})
         return Response(serializer.data)
     
     if request.method=='POST':
@@ -44,7 +44,7 @@ def blog_deatail(request,id):
                 {'deatail':'not allowed'},
                 status=status.HTTP_403_FORBIDDEN
             )
-        serializer=BlogSerializer(blog)
+        serializer=BlogSerializer(blog, context={'request': request})
         return Response(serializer.data,status=status.HTTP_200_OK)
     
     if request.method=='PUT':

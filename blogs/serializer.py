@@ -7,6 +7,8 @@ class CategorySerializer(serializers.ModelSerializer):
         fields=['id','name','slug']
 
 class BlogSerializer(serializers.ModelSerializer):
+    like_count=serializers.SerializerMethodField()
+    liked_by_user=serializers.SerializerMethodField()
     author=serializers.ReadOnlyField(source='author.username')
     category=CategorySerializer(read_only=True)
     category_id=serializers.PrimaryKeyRelatedField(
@@ -14,9 +16,16 @@ class BlogSerializer(serializers.ModelSerializer):
         write_only=True,
         source='category',
     )
+    def get_like_count(self,obj):
+        return obj.likes.count()
+    def get_liked_by_user(self,obj):
+        request=self.context.get('request')
+        if request and request.user.is_authenticated:
+            return obj.likes.filter(user=request.user).exists()
+        return False
     class Meta:
         model=Blog
         fields=[
-            'id','author','title','content','visibility','category','category_id','created_at','updated_at'
+            'id','author','title','content','visibility','category','category_id','created_at','updated_at','like_count','liked_by_user'
         ]
         

@@ -12,7 +12,7 @@ urlpatterns = [
     path('api/token/refresh/',TokenRefreshView.as_view()),
     path('api/accounts/',include('accounts.urls')),
     path('api/blogs/',include('blogs.urls')),
-    # path('api/likes/',include('likes.urls')),
+    path('api/',include('likes.urls')),
     # path('api/comments/',include('comments.urls')),
 ]
 
