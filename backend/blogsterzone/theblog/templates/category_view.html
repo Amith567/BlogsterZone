@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title%}category{% endblock %}
+{% block content%}
+
+{% if category_list%}
+
+<h1>category : {{cats}}</h1>
+<ol>
+  {% for post in category_list %}
+  <li>
+    <a href="{% url 'article' post.pk%}">
+      <h4>{{post.title}}</h4>
+    </a>
+  </li>
+  <p>author : {{post.author}}, published on : {{post.publish_date}}</p>
+
+  <p>  {{post.body | slice:':300'}}</p>
+
+
+  {%endfor%}
+    {% else %}
+  <p>no match found for {{cats}}</p>
+{% endif %}
+</ol>
+{% endblock %}
