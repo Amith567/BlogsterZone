@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+  .nav-items {
+    @apply cursor-pointer text-white rounded-md p-1 transition hover:bg-blue-400 duration-200;
+  }
+}
