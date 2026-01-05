@@ -4,9 +4,9 @@ const Navbar = () => {
     const [open, setOpen] = useState(false)
     return (
         <>
-            <div className='w-full  bg-blue-600 '>
+            <div className='w-full  bg-blue-900 sticky top-0 z-5'>
                 <div className='h-14 flex justify-between items-center px-4'>
-                    <div className='text-white text-xl cursor-pointer'>BlogsterZone</div>
+                    <div className='text-white text-2xl cursor-pointer'>BlogsterZone</div>
                     <div className='hidden md:flex gap-6'>
                         <div className='nav-items'>Home</div>
                         <div className='nav-items'>My Blogs</div>
