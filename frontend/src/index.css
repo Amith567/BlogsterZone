@@ -7,4 +7,7 @@
   .menu-items{
     @apply cursor-pointer text-white bg-blue-500 hover:bg-blue-600 p-1 w-30 text-center rounded-md border
   }
+  .profile-items{
+    @apply bg-gray-200 px-5 py-3 rounded-md w-sm mt-2 mb-2 
+  }
 }

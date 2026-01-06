@@ -12,7 +12,7 @@ const Navbar = () => {
                         <div className='nav-items'><Link to="/" className='w-full block'>Home</Link></div>
                         <div className='nav-items' ><Link to="/user/blogs" className='w-full block'>My Blogs</Link></div>
                         <div className='nav-items'>Login</div>
-                        <div className='nav-items'>Profile</div>
+                        <div className='nav-items'><Link to='/profile' className='block w-full'>Profile</Link></div>
                     </div>
                 
                 <button className="md:hidden text-white text-2xl" onClick={() => setOpen(!open)}>
