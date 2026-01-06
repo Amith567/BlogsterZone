@@ -41,7 +41,7 @@ const Profile = () => {
 
                     <p className='profile-items'>First Name : {user.profile.first_name}</p>
                     <p className='profile-items'>Last Name : {user.profile.last_name}</p>
-                    <p className='profile-items'>DOB : {user.profile.first_name}</p>
+                    <p className='profile-items'>DOB : {user.profile.dob}</p>
                     <p className='profile-items'>Personal Website : {user.profile.portfolio}</p>
                     <p className='profile-items'>facebook : {user.profile.facebook}</p>
                     <p className='profile-items'>Twitter : {user.profile.twitter}</p>

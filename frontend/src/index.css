@@ -5,9 +5,15 @@
     @apply cursor-pointer text-white rounded-md p-1 transition hover:bg-blue-700 duration-200;
   }
   .menu-items{
-    @apply cursor-pointer text-white bg-blue-500 hover:bg-blue-600 p-1 w-30 text-center rounded-md border
+    @apply cursor-pointer text-white bg-blue-500 hover:bg-blue-600 p-1 w-30 text-center rounded-md border;
   }
   .profile-items{
-    @apply bg-gray-200 px-5 py-3 rounded-md w-sm mt-2 mb-2 
+    @apply bg-gray-200 px-5 py-3 rounded-md w-sm mt-2 mb-2 ;
+  }
+  .label-items{
+    @apply text-sm block font-semibold mb-1;
+  }
+  .inp-items{
+    @apply w-full border focus:ring-2 focus:ring-blue-300 rounded px-3 py-2;
   }
 }
