@@ -27,5 +27,3 @@ const Signup = () => {
 
 export default Signup
 
-// Already have an account? Sign In
-// Don’t have an account? Sign Up
