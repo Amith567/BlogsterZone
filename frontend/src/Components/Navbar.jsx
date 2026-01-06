@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
@@ -8,8 +9,8 @@ const Navbar = () => {
                 <div className='h-14 flex justify-between items-center px-4'>
                     <div className='text-white text-2xl cursor-pointer'>BlogsterZone</div>
                     <div className='hidden md:flex gap-6'>
-                        <div className='nav-items'>Home</div>
-                        <div className='nav-items'>My Blogs</div>
+                        <div className='nav-items'><Link to="/" className='w-full block'>Home</Link></div>
+                        <div className='nav-items' ><Link to="/user/blogs" className='w-full block'>My Blogs</Link></div>
                         <div className='nav-items'>Login</div>
                         <div className='nav-items'>Profile</div>
                     </div>

@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Blog = () => {
-    const data = {
+    const navigate=useNavigate()
+    const blog = {
         "id": 101,
         "author": "Amith Anil",
         "title": "Understanding Zero-Knowledge Proofs ",
@@ -18,14 +20,14 @@ const Blog = () => {
     return (
         <>
             <div className='w-full  p-3'>
-                <div className='rounded-md flex flex-col '>
+                <div className='rounded-md flex flex-col ' onClick={()=>navigate(`/blog/${blog.id}`)}>
                     <div className='bg-blue-900 rounded-t p-2'>
-                        <div className='text-xl text-white '>{data.title}</div>
-                        <div className='text-xs text-gray-300'>Author : {data.author} | Published : {data.created_at.slice(0,10)} | Likes : {data.like_count}</div>
+                        <div className='text-xl text-white '>{blog.title}</div>
+                        <div className='text-xs text-gray-300'>Author : {blog.author} | Published : {blog.created_at.slice(0,10)} | Likes : {blog.like_count}</div>
                     </div>
 
-                    <div className='p-2 text-sm'>{data.content.slice(0,500)} <span className='text-blue-600 underline'>(click to continue reading)</span></div>
-                    <div className='p-2 text-sm border-b border-blue-600'>Tags : {data.category}</div>
+                    <div className='p-2 text-sm'>{blog.content.slice(0,500)} <span className='text-blue-600 underline'>(click to continue reading)</span></div>
+                    <div className='p-2 text-sm border-b border-blue-600'>Tags : {blog.category}</div>
 
                 </div>
             </div>
