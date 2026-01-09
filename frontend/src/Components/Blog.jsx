@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Blog = ({blog}) => {
+
     const navigate=useNavigate()
 
     return (
@@ -14,7 +15,7 @@ const Blog = ({blog}) => {
                     </div>
 
                     <div className='p-2 text-sm'>{blog.content} <span className='text-blue-600 underline'>(click to continue reading)</span></div>
-                    <div className='p-2 text-sm border-b border-blue-600'>Tags : {blog.category}</div>
+                    <div className='p-2 text-sm border-b border-blue-600'>Tags : {blog.category?.name}</div>
 
                 </div>
             </div>
