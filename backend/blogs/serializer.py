@@ -10,6 +10,7 @@ class BlogSerializer(serializers.ModelSerializer):
     like_count=serializers.SerializerMethodField()
     liked_by_user=serializers.SerializerMethodField()
     author=serializers.ReadOnlyField(source='author.username')
+    author_id=serializers.ReadOnlyField(source='author.id')
     category=CategorySerializer(read_only=True)
     category_id=serializers.PrimaryKeyRelatedField(
         queryset=Category.objects.all(),
@@ -26,6 +27,6 @@ class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model=Blog
         fields=[
-            'id','author','title','content','visibility','category','category_id','created_at','updated_at','like_count','liked_by_user'
+            'id','author','author_id','title','content','visibility','category','category_id','created_at','updated_at','like_count','liked_by_user'
         ]
         

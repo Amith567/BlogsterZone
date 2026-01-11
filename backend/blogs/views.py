@@ -46,7 +46,7 @@ def blog_deatail(request,id):
             )
         serializer=BlogSerializer(blog, context={'request': request})
         return Response(serializer.data,status=status.HTTP_200_OK)
-    
+        
     if request.method=='PUT':
         if blog.visibility!='public' and request.user!=blog.author:
             return Response(
