@@ -1,33 +1,37 @@
-import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { LoginUser } from '../../api/auth.api'
+import { useState } from 'react'
 
 const SignIn = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState()
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleClick = async (e) => {
     e.preventDefault()
-    setError('')
-    setLoading(true)
+
     if (!username || !password) {
-      setError('all field data is required')
-      setLoading(false)
+      setError('All fields are required !.')
       return
     }
+
+    setError('')
+    setLoading(true)
 
     try {
       const res = await LoginUser({ username, password });
       localStorage.setItem('access', res.data.access);
-      localStorage.setItem('refresh',res.data.refresh)
+      localStorage.setItem('refresh', res.data.refresh)
+      
       navigate('/')
     }
     catch (err) {
-      setError(err.response?.data?.detail || "invalid credentials")
+      console.log(err)
+      setError(err?.response?.data?.message || err?.response?.data?.detail || "Something went wrong !.")
     }
+
     finally {
       setLoading(false)
     }
@@ -46,12 +50,11 @@ const SignIn = () => {
             </div>
             <div className='mb-3'>
               <label className="label-items" >Password</label>
-              <input type="password" className='inp-items' onChange={(e) => setPassword(e.target.value)}/>
+              <input type="password" className='inp-items' onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <p className='text-center text-sm mb-3'>Don't have an account? <span className='text-blue-700 underline cursor-pointer'><Link to='/register'>Sign In</Link></span></p>
+            <p className='text-center text-sm mb-3'>Don't have an account? <span className='text-blue-700 underline cursor-pointer'><Link to='/register'>Sign Up</Link></span></p>
 
-            <button className='text-white bg-blue-800 px-3 py-2 w-full rounded-md hover:bg-blue-900'  type='submit'>Login</button>
-            {loading && <p className='text-center mx-2 text-blue-400 text-sm font-bold'>Logging in ....</p>}
+            <button className='text-white bg-blue-800 px-3 py-2 w-full rounded-md hover:bg-blue-900' type='submit' disabled={loading}>{loading ? "Logging..." : "Login"}</button>
           </form>
         </section>
       </div>

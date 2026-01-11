@@ -11,8 +11,8 @@ const Navbar = (blog) => {
                     <div className='hidden md:flex gap-6'>
                         <div className='nav-items'><Link to="/" className='w-full block'>Home</Link></div>
                         <div className='nav-items' ><Link to="/user/blogs" className='w-full block'>My Blogs</Link></div>
-                        <div className='nav-items'><Link to='/login'>Login</Link></div>
-                        <div className='nav-items'><Link to='/profile' className='block w-full'>Profile</Link></div>
+                        {!localStorage.getItem('access') &&(<div className='nav-items'><Link to='/login'>Login</Link></div>)}
+                        {!localStorage.getItem('access') &&(<div className='nav-items'><Link to='/profile' className='block w-full'>Profile</Link></div>)}
                     </div>
                 
                 <button className="md:hidden text-white text-2xl" onClick={() => setOpen(!open)}>
