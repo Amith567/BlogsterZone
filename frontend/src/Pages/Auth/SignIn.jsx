@@ -40,7 +40,7 @@ const SignIn = () => {
   return (
     <>
       <div className='w-full min-h-screen flex items-center justify-center'>
-        <section className='w-sm rounded-md border-1 border-blue-800 rounded-xl '>
+        <section className='w-sm  border-1 border-blue-800 rounded-xl '>
           <div className='bg-blue-800 text-white rounded-t-xl  text-xl font-semibold text-center py-3'>Login</div>
           <form className='p-4 mt-2' onSubmit={handleClick}>
             <div className='mb-3'>
