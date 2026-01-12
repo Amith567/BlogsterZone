@@ -14,7 +14,7 @@ const Blog = ({blog}) => {
                         <div className='text-xs text-gray-300'>Author : {blog.author} | Published : {blog.created_at} | Likes : {blog.like_count}</div>
                     </div>
 
-                    <div className='p-2 text-sm break-words'>{blog.content} <span className='text-blue-600 underline'>(click to continue reading)</span></div>
+                    <div className='p-2 text-sm break-words'>{blog.content.slice(0,860)} <span className='text-blue-600 underline'>(click to continue reading)</span></div>
                     <div className='p-2 text-sm border-b border-blue-600'>Tags : {blog.category?.name}</div>
 
                 </div>

@@ -68,7 +68,7 @@ if (loading){
         <hr />
 
         <div >
-          <p className='p-2 '>{blog.content}</p>
+          <p className='p-2 break-words'>{blog.content}</p>
           <p className='text-xs text-blue-600'>last updated ({blog.updated_at})</p>
           <hr />
           <div className='flex justify-between pt-2'>

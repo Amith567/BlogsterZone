@@ -21,6 +21,7 @@ const Profile = () => {
         }
 fetchprofile()
     },[]);
+    
 if(loading){
     return  <p>loading in progress</p>
 }
