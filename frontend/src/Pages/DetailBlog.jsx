@@ -23,7 +23,6 @@ useEffect(() => {
       setBlog(blogData)
       setLiked(blogData.liked_by_user)
       setLikes(blogData.like_count)
-      console.log(res.data)
     } catch (err) {
       console.error(err)
     } finally {
