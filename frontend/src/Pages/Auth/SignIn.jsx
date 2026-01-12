@@ -24,12 +24,10 @@ const SignIn = () => {
       const res = await LoginUser({ username, password });
       localStorage.setItem('access', res.data.access);
       localStorage.setItem('refresh', res.data.refresh)
-      
       navigate('/')
     }
     catch (err) {
-      console.log(err)
-      setError(err?.response?.data?.message || err?.response?.data?.detail || "Something went wrong !.")
+      setError( err?.response?.data?.detail || "Something went wrong !.")
     }
 
     finally {

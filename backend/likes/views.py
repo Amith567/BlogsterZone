@@ -16,7 +16,7 @@ def toggle_like(request,blog_id):
     like=Like.objects.filter(user=request.user,blog=blog).first()
     if like:
         like.delete()
-        return Response({'message':'like removed'},status=status.HTTP_200_OK)
+        return Response({'detail':'like removed'},status=status.HTTP_200_OK)
     else:
         Like.objects.create(user=request.user,blog=blog)
-        return Response({'message':'liked'},status=status.HTTP_201_CREATED)
+        return Response({'detail':'liked'},status=status.HTTP_201_CREATED)

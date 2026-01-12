@@ -1,5 +1,5 @@
 from rest_framework.decorators import api_view,permission_classes
-from rest_framework.permissions import IsAuthenticated,AllowAny
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Blog
@@ -12,8 +12,10 @@ def blog_list_create(request):
     if request.method=='GET':
         if request.user.is_authenticated:
             blogs=Blog.objects.filter(
-                Q(visibility='public')|Q(author=request.user)
-            )
+                Q(visibility='public')|
+                Q(visibility='private')|
+                Q(author=request.user,visibility='protected')
+            ).distinct()
         else:
             blogs=Blog.objects.filter(visibility='public')
         serializer=BlogSerializer(blogs,many=True, context={'request': request})
@@ -40,18 +42,26 @@ def blog_deatail(request,id):
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method=='GET':
-        if blog.visibility!='public' and blog.author !=request.user:
+        if blog.visibility=='public':
+            pass
+        elif blog.visibility=='private' and request.user.is_authenticated:
+            pass
+        elif blog.visibility=='protected' and blog.author==request.user:
+            pass
+        else:
             return Response(
-                {'deatail':'not allowed'},
+                {'detail':'not allowed'},
                 status=status.HTTP_403_FORBIDDEN
             )
         serializer=BlogSerializer(blog, context={'request': request})
         return Response(serializer.data,status=status.HTTP_200_OK)
         
     if request.method=='PUT':
-        if blog.visibility!='public' and request.user!=blog.author:
+        if not request.user.is_authenticated:
+            return Response({"detail":"unauthorized user"},status=status.HTTP_401_UNAUTHORIZED)
+        if  request.user!=blog.author:
             return Response(
-                {'deatail':'Permission denied'},
+                {'detail':'Permission denied'},
                 status=status.HTTP_403_FORBIDDEN
             )
         serializer=BlogSerializer(blog,data=request.data,partial=True)
@@ -61,7 +71,9 @@ def blog_deatail(request,id):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
     if request.method=='DELETE':
-        if blog.visibility!='public' and blog.author!=request.user:
+        if not request.user.is_authenticated:
+            return Response({'detail':'unauthorized access'},status=status.HTTP_401_UNAUTHORIZED)
+        if  blog.author!=request.user:
             return Response(
                 {'deatail':'permission denied'},
                 status=status.HTTP_403_FORBIDDEN

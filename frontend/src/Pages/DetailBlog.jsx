@@ -56,7 +56,7 @@ if (loading){
 
         <div className='flex justify-between '>
           <div>
-           
+           <p className='text-2xl font-medium'>{blog.title}</p>
             <div className='text-sm text-gray-800'>Author : {blog.author} | Published : {blog.created_at} </div>
           </div>
           {currentUserId==blog.author_id &&<div className={`text-black text-2xl font-bold p-3 cursor-pointer ${menuclicked ? "bg-gray-200 rounded-full": ""} `} onClick={()=>setMenuclicked(!menuclicked)} >⋮</div>}
@@ -72,7 +72,7 @@ if (loading){
           <p className='text-xs text-blue-600'>last updated ({blog.updated_at})</p>
           <hr />
           <div className='flex justify-between pt-2'>
-            <div className='text-sm'>Tags : {blog.category?.name}</div>
+            <div className='text-sm text-blue-800'>Tags : {blog.category?.name} <span className='ml-5 text-red-800'> Visibility : {blog.visibility}</span></div>
             {localStorage.getItem('access') &&
             <div>
               <button className='mr-4'>comments</button>

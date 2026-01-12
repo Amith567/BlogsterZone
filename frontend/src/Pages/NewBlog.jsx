@@ -24,7 +24,7 @@ const NewBlog = () => {
             await AddBlog({title,content,visibility,category_id})
             navigate('/')
         }catch(err){
-            setError(err?.response?.data?.message || err?.response?.data?.detail || 'Something went wrong!.')
+            setError(err?.response?.data?.detail || 'Something went wrong!.')
         }
 
     }

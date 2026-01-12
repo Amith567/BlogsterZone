@@ -24,7 +24,7 @@ const SignUp = () => {
       await RegisterUser({ username, email, phone, password })
       navigate('/login')
     } catch (err) {
-      setError(err?.response?.data?.message || err?.response?.data?.detail || 'Something went wrong!.')
+      setError( err?.response?.data?.detail || 'Something went wrong!.')
     } finally {
       setLoading(false)
     }
