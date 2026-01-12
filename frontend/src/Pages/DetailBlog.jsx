@@ -1,35 +1,51 @@
-import React, { use, useEffect, useState } from 'react'
+import {useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
-import { DetailBlogView } from '../api/blog.api'
+import { DetailBlogView, LikeBlog } from '../api/blog.api'
 import {jwtDecode} from 'jwt-decode';
 
 const DetailBlog = () => {
   const token=localStorage.getItem('access')
   const currentUserId=token ? jwtDecode(token).user_id:null;
-  console.log(currentUserId)
-  
   const { id } = useParams()
-  const [blog,setBlog]=useState([])
+  const [blog,setBlog]=useState(null)
   const [loading,setLoading]=useState(true)
-  const [liked,setLiked]=useState(true)
+  const [liked,setLiked]=useState(false)
+  const [likes,setLikes]=useState(0)
   const [menuclicked,setMenuclicked]=useState(false)
+  
 
-  useEffect(()=>{
-    const fetchdblog= async()=>{
-
-      try{
-        const res= await DetailBlogView(id)
-        setBlog(res.data)
-      }catch(err){
-        console.log('error',err)
-      }finally{
-        setLoading(false)
-      }
+useEffect(() => {
+  const fetchBlog = async () => {
+    try {
+      const res = await DetailBlogView(id)
+      const blogData = res.data
+      setBlog(blogData)
+      setLiked(blogData.liked_by_user)
+      setLikes(blogData.like_count)
+      console.log(res.data)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+      
     }
-    fetchdblog()
-  },[])
-  console.log('blog',blog.author_id)
+  }
+  fetchBlog()
+}, [id])
+
+
+  const handleLike = async () => {
+    try {
+      await LikeBlog(id)
+      setLiked(prev => !prev)
+      setLikes(prev => (liked ? prev - 1 : prev + 1))
+    } catch (err) {
+      console.error('Like failed', err)
+    }
+  }
+  
+
 if (loading){
   return <p>loading</p>
 }
@@ -41,7 +57,7 @@ if (loading){
 
         <div className='flex justify-between '>
           <div>
-            <p className='text-2xl font-medium'>{blog.title}</p>
+           
             <div className='text-sm text-gray-800'>Author : {blog.author} | Published : {blog.created_at} </div>
           </div>
           {currentUserId==blog.author_id &&<div className={`text-black text-2xl font-bold p-3 cursor-pointer ${menuclicked ? "bg-gray-200 rounded-full": ""} `} onClick={()=>setMenuclicked(!menuclicked)} >⋮</div>}
@@ -61,7 +77,7 @@ if (loading){
             {localStorage.getItem('access') &&
             <div>
               <button className='mr-4'>comments</button>
-              <button  onClick={()=>setLiked(!liked)} className={` px-2 py-1  rounded-md  ${liked ? 'text-black-700' : 'bg-blue-500 text-white'}`}>♡ {blog.like_count}</button>
+              <button  onClick={handleLike} className={` px-2 py-1  rounded-md  text-white ${liked ? ' bg-red-700' : 'bg-blue-700 '}`}>♡ {likes}</button>
               
             </div>}
           </div>
