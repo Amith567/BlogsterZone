@@ -8,4 +8,4 @@ export const LogOut=()=>{
     window.location.replace('/');
 };
 export const GetProfile=()=>api.get('accounts/profile/');
-export const UpdateProfile=(data)=>api.post('accounts/profile/update/',data)
+export const UpdateProfile=(data)=>api.put('accounts/profile/update/',data)

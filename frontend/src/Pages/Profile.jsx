@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import { LogOut,GetProfile } from '../api/auth.api'
+import { Link } from 'react-router-dom'
 
 
 const Profile = () => {
@@ -53,9 +54,8 @@ if(!user){
                     <p className='profile-items'>Personal Website : {user.profile.portfolio}</p>
                     <p className='profile-items'>facebook : {user.profile.facebook}</p>
                     <p className='profile-items'>Twitter : {user.profile.twitter}</p>
-
                     <p className='profile-items'>Phone: {user.phone}</p>
-                    <button className='mt-3 md:mt-20 bg-blue-500 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-600'>Edit Profile</button>
+                    <button className='mt-3 md:mt-20 bg-blue-500 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-600'><Link to='/profile/edit'>Edit Profile</Link></button>
                 </section>
             </div>
 
