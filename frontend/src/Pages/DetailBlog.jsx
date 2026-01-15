@@ -1,8 +1,9 @@
 import {useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
-import { DetailBlogView, LikeBlog } from '../api/blog.api'
+import { DeleteBlog, DetailBlogView, LikeBlog } from '../api/blog.api'
 import {jwtDecode} from 'jwt-decode';
+
 
 const DetailBlog = () => {
   const token=localStorage.getItem('access')
@@ -13,7 +14,23 @@ const DetailBlog = () => {
   const [liked,setLiked]=useState(false)
   const [likes,setLikes]=useState(0)
   const [menuclicked,setMenuclicked]=useState(false)
+  const navigate=useNavigate()
   
+const blogDelete=async ()=>{
+  const confirmDelete=window.confirm('do you want to delete ?')
+  if(!confirmDelete){
+return
+  }
+
+  try{
+    await DeleteBlog(id)
+    navigate('/')
+  }catch(err){
+    console.log(err)
+    alert('failed to delete')
+  }
+
+}
 
 useEffect(() => {
   const fetchBlog = async () => {
@@ -63,7 +80,7 @@ if (loading){
         </div>
         {menuclicked && <div className='absolute right-5 top-0 mt-30 flex flex-col items-end  shadow-md z-2'>
         <p className='menu-items '>Edit</p>
-        <p className='menu-items'>Delete</p>
+        <p className='menu-items' onClick={blogDelete}>Delete</p>
         </div>}
         <hr />
 
