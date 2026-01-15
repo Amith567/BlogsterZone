@@ -7,7 +7,7 @@ import SignIn from './Pages/Auth/SignIn'
 import SignUp from './Pages/Auth/SignUp'
 import NewBlog from './Pages/NewBlog'
 import EditProfile from './Pages/EditProfile'
-
+import EditBlog from './Pages/EditBlog'
 
 const App = () => {
   return (
@@ -20,6 +20,7 @@ const App = () => {
 <Route path='/blog/add' element={<NewBlog/>}/>
 <Route path="/blog/:id" element={<DetailBlog/>}/>
 <Route path="/user/blogs" element={<MyBlogs/>}/>
+<Route path="/blog/:id/edit" element={<EditBlog/>}/>
 
 <Route path="/profile" element={<Profile/>}/>
 <Route path='/profile/edit' element={<EditProfile/>}/>

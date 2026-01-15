@@ -79,7 +79,7 @@ if (loading){
           {currentUserId==blog.author_id &&<div className={`text-black text-2xl font-bold p-3 cursor-pointer ${menuclicked ? "bg-gray-200 rounded-full": ""} `} onClick={()=>setMenuclicked(!menuclicked)} >⋮</div>}
         </div>
         {menuclicked && <div className='absolute right-5 top-0 mt-30 flex flex-col items-end  shadow-md z-2'>
-        <p className='menu-items '>Edit</p>
+        <p className='menu-items ' onClick={()=>navigate(`/blog/${id}/edit`)}>Edit</p>
         <p className='menu-items' onClick={blogDelete}>Delete</p>
         </div>}
         <hr />
