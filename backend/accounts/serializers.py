@@ -25,25 +25,27 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    profile=ProfileSerializer()
+    profile = ProfileSerializer(required=False)
 
     class Meta:
-        model=User
-        fields=[
-            'id','username','email','phone','is_verified','profile'
-        ]
-    
-    def update(self, instance, validated_data):
-        profile_data=validated_data.pop('profile',None)
+        model = User
+        fields = ['id', 'username', 'email', 'phone', 'is_verified', 'profile']
 
-        for attr,value in validated_data.items():
-            setattr(instance,attr,value)
+    def update(self, instance, validated_data):
+        profile_data = validated_data.pop('profile', None)
+
+        # update user fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
         instance.save()
+
+        # update profile fields
         if profile_data:
-            profile=instance.profile
-            for attr,value in profile_data.items():
-                setattr(profile,attr,value)
+            profile, _ = Profile.objects.get_or_create(user=instance)
+            for attr, value in profile_data.items():
+                setattr(profile, attr, value)
             profile.save()
+
         return instance
-        
+
 

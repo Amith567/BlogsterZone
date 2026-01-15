@@ -20,13 +20,17 @@ def profile(request):
     serializer=UserProfileSerializer(request.user)
     return Response(serializer.data)
 
-@api_view(['PUT'])
+@api_view(['PUT', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def update_profile(request):
-    serializer=UserProfileSerializer(
-        request.user,data=request.data,partial=True
+    serializer = UserProfileSerializer(
+        request.user,
+        data=request.data,
+        partial=True
     )
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
-    return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    print(serializer.errors)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
