@@ -74,7 +74,10 @@ if (loading){
         <div className='flex justify-between '>
           <div>
            <p className='text-2xl font-medium'>{blog.title}</p>
-            <div className='text-sm text-gray-800'>Author : {blog.author} | Published : {blog.created_at} </div>
+            <div className='text-sm text-gray-800'><span className='underline cursor-pointer' onClick={(e)=>{
+              e.stopPropagation()
+              navigate(`/${blog.author_id}/profile`)
+            }}>Author : {blog.author} </span>| Published : {blog.created_at} </div>
           </div>
           {currentUserId==blog.author_id &&<div className={`text-black text-2xl font-bold p-3 cursor-pointer ${menuclicked ? "bg-gray-200 rounded-full": ""} `} onClick={()=>setMenuclicked(!menuclicked)} >⋮</div>}
         </div>

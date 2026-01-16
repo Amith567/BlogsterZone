@@ -8,6 +8,7 @@ import SignUp from './Pages/Auth/SignUp'
 import NewBlog from './Pages/NewBlog'
 import EditProfile from './Pages/EditProfile'
 import EditBlog from './Pages/EditBlog'
+import UsersProfile from './Pages/UsersProfile'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
 
 <Route path="/profile" element={<Profile/>}/>
 <Route path='/profile/edit' element={<EditProfile/>}/>
+<Route path='/:id/profile'element={<UsersProfile/>}/>
 
 </Routes>
     </>
