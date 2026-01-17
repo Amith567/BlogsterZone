@@ -12,5 +12,6 @@ class CommentsSerializer(serializers.ModelSerializer):
             'id',
             'commented_user',
             'created_at',
-            'message',            
+            'message',
+            'commented_by',            
         ]

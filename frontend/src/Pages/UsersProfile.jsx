@@ -25,7 +25,6 @@ const UsersProfile = () => {
             <div className="w-full h-screen flex flex-col md:flex-row">
                 <div className='w-full flex flex-col md:flex-row'>
                     <section className='w-full md:flex-1 flex justify-center items-center flex-col gap-3'>
-                        <p className='mt-2 text-center text-3xl font-semibold md:mt-10 md:mb-10'>Hi {user.profile.first_name} !</p>
                         <div className='rounded-full overflow-hidden w-24 h-24 border-2 border-blue-700'>
                             <img src="src/assets/profile.png" alt="profile" />
                         </div>
