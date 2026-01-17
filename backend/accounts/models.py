@@ -24,6 +24,7 @@ class Profile(models.Model):
     facebook=models.URLField(null=True,blank=True)
     instagram=models.URLField(null=True,blank=True)
     twitter=models.URLField(null=True,blank=True)
+    avatar = models.ImageField(upload_to='profiles', null=True, blank=True)
 
     def __str__(self):
         return f"profile of {self.user.username}"

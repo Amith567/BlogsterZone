@@ -26,7 +26,7 @@ const UsersProfile = () => {
                 <div className='w-full flex flex-col md:flex-row'>
                     <section className='w-full md:flex-1 flex justify-center items-center flex-col gap-3'>
                         <div className='rounded-full overflow-hidden w-24 h-24 border-2 border-blue-700'>
-                            <img src="src/assets/profile.png" alt="profile" />
+                            <img src={`http://127.0.0.1:8000${user.profile.avatar}`} alt="profile" />
                         </div>
                         <p className='text-sm font-semibold'>Username : {user.username}</p>
                         <p className='text-sm'>Email: {user.email}</p>

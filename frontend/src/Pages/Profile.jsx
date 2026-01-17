@@ -1,34 +1,34 @@
 import { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
-import { LogOut,GetProfile } from '../api/auth.api'
+import { LogOut, GetProfile } from '../api/auth.api'
 import { Link } from 'react-router-dom'
 
 
 const Profile = () => {
-    const [user,setUser]=useState(null)
-    const [loading,setLoading]=useState(true)
-    useEffect(()=>{
-        const fetchprofile=async()=>{
-            try{
-                const res=await GetProfile()
+    const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        const fetchprofile = async () => {
+            try {
+                const res = await GetProfile()
                 setUser(res.data)
             }
-            catch(err){
-                console.log('profile fetch failed',err)
+            catch (err) {
+                console.log('profile fetch failed', err)
             }
-            finally{
+            finally {
                 setLoading(false)
             }
         }
-fetchprofile()
-    },[]);
-    
-if(loading){
-    return  <p>loading in progress</p>
-}
-if(!user){
-    return <p>failed to load profile</p>
-}
+        fetchprofile()
+    }, []);
+
+    if (loading) {
+        return <p>loading in progress</p>
+    }
+    if (!user) {
+        return <p>failed to load profile</p>
+    }
     return (
         <>
             <Navbar />
@@ -37,13 +37,13 @@ if(!user){
                 <section className='w-full md:flex-1 flex justify-center items-center flex-col gap-3'>
                     <p className='mt-2 text-center text-3xl font-semibold md:mt-10 md:mb-10'>Hi {user.profile.first_name} !</p>
                     <div className='rounded-full overflow-hidden w-24 h-24 border-2 border-blue-700'>
-                    <img src="src/assets/profile.png" alt="profile" />
+                        <img src={`http://127.0.0.1:8000${user.profile.avatar}`} alt="profile" />
                     </div>
                     <p className='text-sm font-semibold'>Username : {user.username}</p>
                     <p className='text-sm'>Email: {user.email}</p>
-                    
+
                     <p className='px-5 md:px-15'><span className='font-semibold'>Bio</span><br />{user.profile.bio}</p>
-                    <button className='text-white bg-red-700 px-3 py-2 rounded-md hover:bg-red-800 md:mt-30 text-sm' onClick={()=>LogOut()}>Logout</button>
+                    <button className='text-white bg-red-700 px-3 py-2 rounded-md hover:bg-red-800 md:mt-30 text-sm' onClick={() => LogOut()}>Logout</button>
                 </section>
 
                 <section className='w-full md:flex-1 flex flex-col items-center justify-center '>

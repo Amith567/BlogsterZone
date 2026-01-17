@@ -19,9 +19,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
     
 class ProfileSerializer(serializers.ModelSerializer):
+    avatar = serializers.ImageField(required=False)
+
     class Meta:
-        model=Profile
-        exclude=['user']
+        model = Profile
+        exclude = ['user']
+
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
