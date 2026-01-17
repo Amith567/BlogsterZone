@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { UserProfile } from "../api/auth.api"
-import { Link, useParams } from "react-router-dom"
+import {  useParams } from "react-router-dom"
 const UsersProfile = () => {
     const { id } = useParams()
     const [user,setUser]=useState(null)
@@ -22,7 +22,7 @@ const UsersProfile = () => {
     }
     return (
         <>
-            <div className="w-full flex flex-col md:flex-row">
+            <div className="w-full h-screen flex flex-col md:flex-row">
                 <div className='w-full flex flex-col md:flex-row'>
                     <section className='w-full md:flex-1 flex justify-center items-center flex-col gap-3'>
                         <p className='mt-2 text-center text-3xl font-semibold md:mt-10 md:mb-10'>Hi {user.profile.first_name} !</p>
@@ -48,8 +48,6 @@ const UsersProfile = () => {
                 </div>
 
             </div>
-            <div className="w-full flex justify-center mt-10">
-            <button className='mt-3 md:mt-20 bg-blue-500 text-white px-8 py-2 rounded-md text-sm hover:bg-blue-600'><Link to='/'>back</Link></button></div>
         </>
     )
 }

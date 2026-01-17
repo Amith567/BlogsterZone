@@ -2,7 +2,7 @@
 
 @layer components {
   .nav-items {
-    @apply cursor-pointer text-white rounded-md p-1 transition hover:bg-blue-700 duration-200;
+    @apply cursor-pointer text-white rounded-md p-1 transition hover:bg-blue-900 duration-200;
   }
   .menu-items{
     @apply cursor-pointer text-white bg-blue-500 hover:bg-blue-600 p-1 w-30 text-center rounded-md border;

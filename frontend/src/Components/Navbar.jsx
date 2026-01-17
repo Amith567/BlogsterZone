@@ -8,7 +8,7 @@ const Navbar = () => {
     const isLogined=!!localStorage.getItem('access')
     return (
         <>
-            <div className='w-full  bg-blue-900 sticky top-0 z-5'>
+            <div className='w-full  bg-blue-800 sticky top-0 z-5'>
                 <div className='h-14 flex justify-between items-center px-4'>
                     <div className='text-white text-2xl cursor-pointer' ><Link to='/'>BlogsterZone</Link></div>
                     <div className='hidden md:flex gap-6'>
