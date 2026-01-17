@@ -13,7 +13,7 @@ urlpatterns = [
     path('api/accounts/',include('accounts.urls')),
     path('api/blogs/',include('blogs.urls')),
     path('api/',include('likes.urls')),
-    # path('api/comments/',include('comments.urls')),
+    path('api/comments/',include('comments.urls')),
 ]
 
 if settings.DEBUG:
