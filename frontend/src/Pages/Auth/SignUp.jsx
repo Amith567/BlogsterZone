@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { RegisterUser } from '../../api/auth.api'
 
 const SignUp = () => {
-
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -24,11 +23,10 @@ const SignUp = () => {
       await RegisterUser({ username, email, phone, password })
       navigate('/login')
     } catch (err) {
-      setError( err?.response?.data?.detail || 'Something went wrong!.')
+      setError(err?.response?.data?.detail || 'Something went wrong!.')
     } finally {
       setLoading(false)
     }
-
   }
   return (
     <>
@@ -36,10 +34,8 @@ const SignUp = () => {
         <div className='w-sm rounded-xl border-blue-800 border-1'>
           <p className='bg-blue-800 text-white text-center py-3 text-xl font-semibold rounded-t-xl'>Register</p>
           <form className='p-3' onSubmit={handleSubmit}>
-
             <div className='mb-3'>
               {error && <p className='text-sm text-red-400 text-center mb-3'>{error}</p>}
-
               <label className='label-items'>User Name :</label>
               <input type="text" className='inp-items' onChange={(e) => { setUsername(e.target.value) }} />
             </div>
@@ -51,14 +47,12 @@ const SignUp = () => {
               <label className='label-items'>Phone No :</label>
               <input type="tel" className='inp-items' onChange={(e) => setPhone(e.target.value)} />
             </div>
-
             <div className='mb-3'>
               <label className='label-items'>Password :</label>
               <input type="password" className='inp-items' onChange={(e) => setPassword(e.target.value)} />
             </div>
-
             <p className='text-sm text-center mb-3'>Already have an account?<span className='underline text-blue-800 cursor-pointer'><Link to='/login'> Sign In</Link></span></p>
-            <button className='w-full bg-blue-800 hover:bg-blue-900 text-white py-2 rounded-md ' type='submit' disabled={loading}>{loading ? "Registering ...":"Register"}</button>
+            <button className='w-full bg-blue-800 hover:bg-blue-900 text-white py-2 rounded-md ' type='submit' disabled={loading}>{loading ? "Registering ..." : "Register"}</button>
           </form>
         </div>
       </div>

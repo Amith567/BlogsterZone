@@ -11,15 +11,12 @@ const SignIn = () => {
 
   const handleClick = async (e) => {
     e.preventDefault()
-
     if (!username || !password) {
       setError('All fields are required !.')
       return
     }
-
     setError('')
     setLoading(true)
-
     try {
       const res = await LoginUser({ username, password });
       localStorage.setItem('access', res.data.access);
@@ -27,14 +24,12 @@ const SignIn = () => {
       navigate('/')
     }
     catch (err) {
-      setError( err?.response?.data?.detail || "Something went wrong !.")
+      setError(err?.response?.data?.detail || "Something went wrong !.")
     }
-
     finally {
       setLoading(false)
     }
   }
-
   return (
     <>
       <div className='w-full min-h-screen flex items-center justify-center'>
@@ -51,7 +46,6 @@ const SignIn = () => {
               <input type="password" className='inp-items' onChange={(e) => setPassword(e.target.value)} />
             </div>
             <p className='text-center text-sm mb-3'>Don't have an account? <span className='text-blue-700 underline cursor-pointer'><Link to='/register'>Sign Up</Link></span></p>
-
             <button className='text-white bg-blue-800 px-3 py-2 w-full rounded-md hover:bg-blue-900' type='submit' disabled={loading}>{loading ? "Logging..." : "Login"}</button>
           </form>
         </section>
