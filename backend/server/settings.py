@@ -6,25 +6,11 @@ from corsheaders.defaults import default_headers
 
 load_dotenv()
 
-# --------------------------------------------------
-# Base directory
-# --------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# --------------------------------------------------
-# Security
-# --------------------------------------------------
 SECRET_KEY = os.getenv('SECRET_KEY')
-
 DEBUG = True
-
 ALLOWED_HOSTS = ["*"]
 
-
-# --------------------------------------------------
-# Applications
-# --------------------------------------------------
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,24 +18,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Third-party
     'corsheaders',
     'rest_framework',
-
-    # Local apps
     'accounts',
     'blogs',
     'likes',
     'comments',
 ]
 
-
-# --------------------------------------------------
-# Middleware
-# --------------------------------------------------
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # MUST be first
+    'corsheaders.middleware.CorsMiddleware',  
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,10 +37,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-# --------------------------------------------------
-# CORS Configuration (FIXED)
-# --------------------------------------------------
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
@@ -70,10 +44,6 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     "authorization",
 ]
 
-
-# --------------------------------------------------
-# REST Framework + JWT
-# --------------------------------------------------
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -88,17 +58,8 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-
-# --------------------------------------------------
-# URL & WSGI
-# --------------------------------------------------
 ROOT_URLCONF = 'server.urls'
 WSGI_APPLICATION = 'server.wsgi.application'
-
-
-# --------------------------------------------------
-# Templates
-# --------------------------------------------------
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -113,17 +74,7 @@ TEMPLATES = [
         },
     },
 ]
-
-
-# --------------------------------------------------
-# Custom User Model
-# --------------------------------------------------
 AUTH_USER_MODEL = 'accounts.User'
-
-
-# --------------------------------------------------
-# Database (MySQL)
-# --------------------------------------------------
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -137,38 +88,17 @@ DATABASES = {
         },
     }
 }
-
-
-# --------------------------------------------------
-# Password validation
-# --------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
-
-
-# --------------------------------------------------
-# Internationalization
-# --------------------------------------------------
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-
-
-# --------------------------------------------------
-# Static & Media
-# --------------------------------------------------
 STATIC_URL = 'static/'
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-
-# --------------------------------------------------
-# Default primary key field type
-# --------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
