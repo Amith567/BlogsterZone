@@ -25,8 +25,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         exclude = ['user']
 
-
-
 class UserProfileSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(required=False)
 
@@ -36,19 +34,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('profile', None)
-
-        # update user fields
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
-
-        # update profile fields
         if profile_data:
             profile, _ = Profile.objects.get_or_create(user=instance)
             for attr, value in profile_data.items():
                 setattr(profile, attr, value)
             profile.save()
-
         return instance
 
 

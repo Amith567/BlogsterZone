@@ -27,7 +27,6 @@ def userprofile(request,user_id):
     serializer=UserProfileSerializer(user)
     return Response(serializer.data,status=status.HTTP_200_OK)
 
-
 @api_view(['PUT', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def update_profile(request):
