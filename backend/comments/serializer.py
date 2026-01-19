@@ -2,16 +2,21 @@ from rest_framework import serializers
 from .models import Comment
 
 class CommentsSerializer(serializers.ModelSerializer):
-    commented_user=serializers.CharField(
+    commented_user = serializers.CharField(
         source='commented_by.username',
         read_only=True
     )
+    commented_by_id = serializers.IntegerField(
+        source='commented_by.id',
+        read_only=True
+    )
+
     class Meta:
-        model=Comment
-        fields=[
+        model = Comment
+        fields = [
             'id',
             'commented_user',
+            'commented_by_id',
             'created_at',
             'message',
-            'commented_by',            
         ]

@@ -1,7 +1,7 @@
-from rest_framework.serializers import Serializer
+from rest_framework import serializers
 from .models import Like
 
-class LikeSerializer(Serializer.ModelSerializer):
+class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model=Like
         fields=['id','user','blog','created_at']
