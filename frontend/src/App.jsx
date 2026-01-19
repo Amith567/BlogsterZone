@@ -13,21 +13,20 @@ import UsersProfile from './Pages/UsersProfile'
 const App = () => {
   return (
     <>
-<Routes>
-<Route path="/" element={<Home/>}/>
-<Route path="/login" element={<SignIn/>}/>
-<Route path="/register" element={<SignUp/>}/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/register" element={<SignUp />} />
 
-<Route path='/blog/add' element={<NewBlog/>}/>
-<Route path="/blog/:id" element={<DetailBlog/>}/>
-<Route path="/user/blogs" element={<MyBlogs/>}/>
-<Route path="/blog/:id/edit" element={<EditBlog/>}/>
+        <Route path='/blog/add' element={<NewBlog />} />
+        <Route path="/blog/:id" element={<DetailBlog />} />
+        <Route path="/user/blogs" element={<MyBlogs />} />
+        <Route path="/blog/:id/edit" element={<EditBlog />} />
 
-<Route path="/profile" element={<Profile/>}/>
-<Route path='/profile/edit' element={<EditProfile/>}/>
-<Route path='/:id/profile'element={<UsersProfile/>}/>
-
-</Routes>
+        <Route path="/profile" element={<Profile />} />
+        <Route path='/profile/edit' element={<EditProfile />} />
+        <Route path='/:id/profile' element={<UsersProfile />} />
+      </Routes>
     </>
   )
 }

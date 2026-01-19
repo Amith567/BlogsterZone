@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { UserProfile } from "../api/auth.api"
-import {  useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
+
 const UsersProfile = () => {
     const { id } = useParams()
-    const [user,setUser]=useState(null)
-    useEffect(() => {
+    const [user, setUser] = useState(null)
 
+    useEffect(() => {
         const getUsersProfile = async () => {
             try {
                 const res = await UserProfile(id)
@@ -13,11 +14,11 @@ const UsersProfile = () => {
             } catch (err) {
                 console.log(err)
             }
-
         }
         getUsersProfile()
     }, [id])
-    if(!user){
+
+    if (!user) {
         return <p>loading...</p>
     }
     return (
@@ -30,12 +31,9 @@ const UsersProfile = () => {
                         </div>
                         <p className='text-sm font-semibold'>Username : {user.username}</p>
                         <p className='text-sm'>Email: {user.email}</p>
-
                         <p className='px-5 md:px-15'><span className='font-semibold'>Bio</span><br />{user.profile.bio}</p>
                     </section>
-
                     <section className='w-full md:flex-1 flex flex-col items-center justify-center '>
-
                         <p className='profile-items'>First Name : {user.profile.first_name}</p>
                         <p className='profile-items'>Last Name : {user.profile.last_name}</p>
                         <p className='profile-items'>DOB : {user.profile.dob}</p>
@@ -45,7 +43,6 @@ const UsersProfile = () => {
                         <p className='profile-items'>Phone: {user.phone}</p>
                     </section>
                 </div>
-
             </div>
         </>
     )

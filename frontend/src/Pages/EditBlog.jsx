@@ -9,7 +9,7 @@ const EditBlog = () => {
     const [visibility, setVisibility] = useState('')
     const [category_id, setCategory] = useState('')
     const { id } = useParams()
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const loadBlog = async () => {
@@ -23,19 +23,17 @@ const EditBlog = () => {
             } catch (err) {
                 setError(err)
             }
-
         }
         loadBlog()
     }, [id])
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault()
-
         setError('')
-        try{
-            await UpdateBlog(id,{title,content,visibility,category:{category_id}})
+        try {
+            await UpdateBlog(id, { title, content, visibility, category: { category_id } })
             navigate('/')
-        }catch(err){
+        } catch (err) {
             setError(err)
         }
     }
@@ -69,7 +67,7 @@ const EditBlog = () => {
                             <div className='flex-1'>
                                 <label htmlFor="" className='label-items'>Category :</label>
                                 <select name="" id="" className='inp-items text-xs' value={category_id} onChange={(e) => { setCategory(e.target.value) }}>
-                                    <option value=''  disabled>Select Category</option>
+                                    <option value='' disabled>Select Category</option>
                                     <option value="4"  >Entertainment</option>
                                     <option value="3">Sports</option>
                                     <option value="1">Tech</option>
@@ -82,7 +80,6 @@ const EditBlog = () => {
                         </div>
                     </form>
                 </section>
-
             </div>
 
 

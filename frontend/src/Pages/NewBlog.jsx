@@ -5,31 +5,29 @@ import { AddBlog } from '../api/blog.api'
 
 
 const NewBlog = () => {
-    const [title,setTitle]=useState('')
-    const [content,setContent]=useState('')
-    const [visibility,setVisibility]=useState('')
-    const [category_id,setCategory]=useState('')
-    const [error,setError]=useState('')
-    const navigate=useNavigate()
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
+    const [visibility, setVisibility] = useState('')
+    const [category_id, setCategory] = useState('')
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
 
-    const handleSubmit = async(e)=>{
-        console.log(title,content,category_id,visibility)
+    const handleSubmit = async (e) => {
+        console.log(title, content, category_id, visibility)
         e.preventDefault()
         setError('')
-        if (!title || !content || !visibility || !category_id){
+        if (!title || !content || !visibility || !category_id) {
             setError('All fields are required !.')
             return
         }
-        try{
-            await AddBlog({title,content,visibility,category_id})
+        try {
+            await AddBlog({ title, content, visibility, category_id })
             navigate('/')
-        }catch(err){
+        } catch (err) {
             setError(err?.response?.data?.detail || 'Something went wrong!.')
         }
-
     }
     return (
-        
         <>
             <Navbar />
             <div className='w-full flex justify-center mt-4'>
@@ -39,16 +37,16 @@ const NewBlog = () => {
                         {error && <div className='mt-3 mb-3 text-xs text-red-500 text-center'>{error}</div>}
                         <div className='mt-3 mb-3'>
                             <label htmlFor="" className='label-items'>Title :</label>
-                            <input type="text" className='inp-items' onChange={(e)=>{setTitle(e.target.value)}}/>
+                            <input type="text" className='inp-items' onChange={(e) => { setTitle(e.target.value) }} />
                         </div>
                         <div className='mb-3'>
                             <label htmlFor="" className='label-items'>Content :</label>
-                            <textarea name="" id="" className='inp-items h-32'onChange={(e)=>{setContent(e.target.value)}}></textarea>
+                            <textarea name="" id="" className='inp-items h-32' onChange={(e) => { setContent(e.target.value) }}></textarea>
                         </div>
                         <div className='mb-3 flex gap-3'>
                             <div className='flex-1 '>
                                 <label htmlFor="" className='label-items'>Visibility :</label>
-                                <select name="" id="" className='inp-items text-xs' onChange={(e)=>{setVisibility(e.target.value)}}>
+                                <select name="" id="" className='inp-items text-xs' onChange={(e) => { setVisibility(e.target.value) }}>
                                     <option value="" selected disabled>Select Visibility</option>
                                     <option value="public"  >Public</option>
                                     <option value="private">Private</option>
@@ -57,7 +55,7 @@ const NewBlog = () => {
                             </div>
                             <div className='flex-1'>
                                 <label htmlFor="" className='label-items'>Category :</label>
-                                <select name="" id="" className='inp-items text-xs' onChange={(e)=>{setCategory(e.target.value)}}>
+                                <select name="" id="" className='inp-items text-xs' onChange={(e) => { setCategory(e.target.value) }}>
                                     <option value="" selected disabled>Select Category</option>
                                     <option value="4"  >Entertainment</option>
                                     <option value="3">Sports</option>
@@ -67,7 +65,7 @@ const NewBlog = () => {
                             </div>
                         </div>
                         <div className='mb-4 mt-4 flex justify-center'>
-                        <button className='px-5 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800' type='submit'>Create</button>
+                            <button className='px-5 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800' type='submit'>Create</button>
                         </div>
                     </form>
                 </section>

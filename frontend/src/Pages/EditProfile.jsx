@@ -5,10 +5,8 @@ import { GetProfile, UpdateProfile } from '../api/auth.api'
 
 const EditProfile = () => {
   const navigate = useNavigate()
-
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-
   const [username, setUsername] = useState('')
   const [phone, setPhone] = useState('')
   const [first_name, setFname] = useState('')
@@ -20,13 +18,11 @@ const EditProfile = () => {
   const [facebook, setFacebook] = useState('')
   const [photo, setPhoto] = useState(null)
 
-  /* ================= LOAD PROFILE ================= */
   useEffect(() => {
     const loadProfile = async () => {
       try {
         const res = await GetProfile()
         const data = res.data
-
         setUsername(data.username || '')
         setPhone(data.phone || '')
         setBio(data.profile?.bio || '')
@@ -44,29 +40,22 @@ const EditProfile = () => {
     loadProfile()
   }, [])
 
-  /* ================= SUBMIT ================= */
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError('')
-
     try {
       const payload = new FormData()
-
       if (username.trim()) payload.append('username', username)
       if (phone.trim()) payload.append('phone', phone)
-
       if (first_name.trim()) payload.append('profile.first_name', first_name)
       if (last_name.trim()) payload.append('profile.last_name', last_name)
       if (bio.trim()) payload.append('profile.bio', bio)
       if (portfolio.trim()) payload.append('profile.portfolio', portfolio)
       if (twitter.trim()) payload.append('profile.twitter', twitter)
       if (facebook.trim()) payload.append('profile.facebook', facebook)
-
       if (dob) payload.append('profile.dob', dob)
-
       if (photo) payload.append('profile.avatar', photo)
-
       await UpdateProfile(payload)
       navigate('/profile')
     } catch (err) {
@@ -81,20 +70,17 @@ const EditProfile = () => {
   return (
     <>
       <Navbar />
-
       <div className="w-full flex justify-center mt-4">
         <section className="w-sm lg:min-w-4xl border border-blue-800 rounded-xl mb-5">
           <p className="text-2xl font-semibold text-center bg-blue-800 text-white w-full py-3 rounded-t-xl">
             Edit Profile
           </p>
-
           <form className="px-3" onSubmit={handleSubmit}>
             {error && (
               <div className="mt-3 mb-3 text-xs text-red-500 text-center">
                 {error}
               </div>
             )}
-
             <div className="mt-3 mb-3 flex gap-3">
               <div className="flex-1">
                 <label className="label-items">User Name</label>
@@ -105,7 +91,6 @@ const EditProfile = () => {
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
-
               <div className="flex-1">
                 <label className="label-items">Phone</label>
                 <input
@@ -116,7 +101,6 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-
             <div className="mb-3 flex gap-3">
               <div className="flex-1">
                 <label className="label-items">First Name</label>
@@ -127,7 +111,6 @@ const EditProfile = () => {
                   onChange={(e) => setFname(e.target.value)}
                 />
               </div>
-
               <div className="flex-1">
                 <label className="label-items">Last Name</label>
                 <input
@@ -138,7 +121,6 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-
             <div className="mt-3 mb-3">
               <label className="label-items">Bio</label>
               <textarea
@@ -147,7 +129,6 @@ const EditProfile = () => {
                 onChange={(e) => setBio(e.target.value)}
               />
             </div>
-
             <div className="mt-3 mb-3 flex gap-3">
               <div className="flex-1">
                 <label className="label-items">Portfolio</label>
@@ -158,7 +139,6 @@ const EditProfile = () => {
                   onChange={(e) => setPortfolio(e.target.value)}
                 />
               </div>
-
               <div className="flex-1">
                 <label className="label-items">Facebook</label>
                 <input
@@ -169,7 +149,6 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-
             <div className="mt-3 mb-3 flex gap-3">
               <div className="flex-1">
                 <label className="label-items">Twitter</label>
@@ -180,7 +159,6 @@ const EditProfile = () => {
                   onChange={(e) => setTwitter(e.target.value)}
                 />
               </div>
-
               <div className="flex-1">
                 <label className="label-items">DOB</label>
                 <input
@@ -191,23 +169,19 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-
-<div className="mt-3 mb-3">
-  <label className="label-items">Profile Photo</label>
-  <input
-    type="file"
-    accept="image/*"
-    className="inp-items"
-    onChange={(e) => {
-      const file = e.target.files[0]
-      if (!file) return
-
-      setPhoto(file)
-      
-    }}
-  />
-</div>
-
+            <div className="mt-3 mb-3">
+              <label className="label-items">Profile Photo</label>
+              <input
+                type="file"
+                accept="image/*"
+                className="inp-items"
+                onChange={(e) => {
+                  const file = e.target.files[0]
+                  if (!file) return
+                  setPhoto(file)
+                }}
+              />
+            </div>
             <div className="mt-4 mb-3 flex justify-center">
               <button
                 type="submit"

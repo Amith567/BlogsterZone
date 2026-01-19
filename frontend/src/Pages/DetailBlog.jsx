@@ -5,8 +5,6 @@ import { AddComment, DeleteBlog, DetailBlogView, GetComments, LikeBlog } from '.
 import { jwtDecode } from 'jwt-decode';
 import Comments from '../Components/Comments';
 
-
-
 const DetailBlog = () => {
   const token = localStorage.getItem('access')
   const currentUserId = token ? jwtDecode(token).user_id : null;
@@ -52,7 +50,6 @@ const DetailBlog = () => {
   }
 
   useEffect(() => {
-
     fetchBlog()
   }, [id])
 
@@ -76,9 +73,7 @@ const DetailBlog = () => {
     } catch (err) {
       console.log(err)
     }
-
   }
-
 
   if (loading) {
     return <p>loading</p>
@@ -87,7 +82,6 @@ const DetailBlog = () => {
     <>
       <Navbar />
       <div className='w-full flex flex-col gap-4  p-3'>
-
         <div className='flex justify-between '>
           <div>
             <p className='text-2xl font-medium'>{blog.title}</p>
@@ -103,7 +97,6 @@ const DetailBlog = () => {
           <p className='menu-items' onClick={blogDelete}>Delete</p>
         </div>}
         <hr />
-
         <div >
           <p className='p-2 break-words'>{blog.content}</p>
           <p className='text-xs text-blue-600'>last updated ({blog.updated_at})</p>
@@ -117,22 +110,18 @@ const DetailBlog = () => {
                   : "text-black hover:bg-gray-200"
                   }`} onClick={() => { setCommentclicked(prev => !prev) }}>comments</button>
                 <button onClick={handleLike} className={` px-2 py-1  rounded-md  text-white ${liked ? ' bg-red-700' : 'bg-blue-700 '}`}>♡ {likes}</button>
-
               </div>}
           </div>
         </div>
-
       </div><hr />
       {commentclicked &&
         <div className='w-full px-3 pt-5'>
           <form className='w-full flex gap-3' onSubmit={handleComments}>
-            <input type="text" name="" className="flex-1 inp-items"  value={message}placeholder='write a comment ...' onChange={(e) => { setMessage(e.target.value) }} />
+            <input type="text" name="" className="flex-1 inp-items" value={message} placeholder='write a comment ...' onChange={(e) => { setMessage(e.target.value) }} />
             <button className='px-5 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800' type='submit'>Submit</button>
           </form>
           {comments.map((comment) => (<Comments key={comment.id} comment={comment} />))}
-
         </div>}
-
     </>
   )
 }
