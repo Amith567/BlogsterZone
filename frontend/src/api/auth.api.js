@@ -1,6 +1,5 @@
 import api from "./axios";
 
-
 export const LoginUser=(data)=>api.post('token/',data);
 export const RegisterUser=(data)=>api.post('accounts/register/',data);
 export const LogOut=()=>{

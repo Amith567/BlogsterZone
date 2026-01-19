@@ -4,13 +4,9 @@ const api = axios.create({
   baseURL: "http://127.0.0.1:8000/api",
   timeout: 10000,
 });
-
-
 const isAuthRequest = (url) => {
   return url.includes("/token/");
 };
-
-
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("access");
@@ -21,8 +17,6 @@ api.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
-
-
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
